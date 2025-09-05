@@ -1,0 +1,61 @@
+import express from 'express'
+import 'dotenv/config'
+import session from 'express-session'
+import userRouter from './src/routes/auth.route.js';
+import filmRouter from './src/routes/film.route.js';
+
+
+const app = express()
+
+// configurer la session
+app.use(session({
+    secret: 'express-ejs',
+    resave: false,
+    saveUninitialized: false
+
+}))
+
+// utiliser le middleware body-parser
+app.use(express.urlencoded())
+
+// configurer les ressources statiques
+app.use(express.static('public'))
+
+
+// Mapping entre routes et le routeur
+app.use('/', userRouter);
+app.use('/', filmRouter);
+
+// Configuration du moteur de template
+app.set('view engine', 'ejs')
+app.set('views', import.meta.dirname + '/templates')
+
+// modifier le delimiter
+// app.set('view options', { delimiter: '?' })
+
+app.get(['/', '/home', '/accueil'], (req, res) => {
+    res.render('index')
+})
+app.get(['/login'], (req, res) => {
+    res.render('login')
+})
+app.get(['/signup'], (req, res) => {
+    res.render('signup')
+})
+app.get(['/admin'], (req, res) => {
+    res.render('admin')
+})
+
+
+app.all("/*splat", (req, res) => {
+    res
+        .status(404)
+        .end("Page introuvable")
+})
+
+
+const PORT = process.env.PORT || 5555
+
+app.listen(PORT, () => {
+    console.log(`Adresse serveur : http://localhost:${PORT}`);
+})
