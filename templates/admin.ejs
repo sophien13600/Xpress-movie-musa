@@ -1,95 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js" integrity="sha384-7qAoOXltbVP82dhxHAUje59V5r2YsVfBafyUDxEdApLPmcdhBPg1DKg1ERo0BZlK" crossorigin="anonymous"></script>
 </head>
+
 <body>
-   <header>
-     <nav class="navbar navbar-expand-lg bg-body-tertiary justify-content-around">
-       <div class="d-flex ">
-         <div>
-           <a class="navbar-brand" href="#">Xpress-Movie</a>
-         </div>
+  <%-include('partials/header') %>
+  <% if (user.role=='admin') { %>
+  <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+    <h2> Enregister un film</h2>
 
-         <div>
-           <form class="d-flex" role="search">
-             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-             <button class="btn btn-outline-success" type="submit">Search</button>
-           </form>
-         </div>
-
-         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-             <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-             </li>
-             <li class="nav-item">
-               <a class="nav-link" href="#">Favoris</a>
-             </li>
-             <li class="nav-item">
-               <a class="nav-link" href="/signup">Compte</a>
-             </li>
-             <li class="nav-item">
-               <a class="nav-link" href="/login">Connexion</a>
-             </li>
-           </ul>
-
-         </div>
-       </div>
-     </nav>
-
-
-   </header>
-    <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
-       <div>
-         <h2> Enregister un film</h2>
-       </div>
-        <form class="d-flex gab-3 " action="/admin" method="post">
-        <div class="m-3">
-          <label for="genre" class="form-label">Genre</label>
-          <input type="text" class="form-control" id="genre" name="genre">
-        </div>
-        <div class="m-3 ">
-          <label for="titre" class="form-label">Titre</label>
-          <input type="text" class="form-control" id="titre" name="titre">
-        </div>
-        <div class="m-3 ">
-          <label for="description" class="form-label">Description </label>
-          <input type="text" class="form-control" id="description" name="description">
-        </div>
-        <div class="m-3">
-          <label for="date" class="form-label">Date de Sortie</label>
-          <input type="date" class="form-control" id="date" name="date">
-        </div>
-        <div class="m-3">
-          <label for="image" class="form-label">Image</label>
-          <input type="file" class="form-control" id="image" name="image">
-        </div>
-       <div class="m-3 mt-5">
-         <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
-       </div>
-      </form>
-      <div>
-        <h3>
-            Liste de film
-        </h3>
-        <div>
-            <ul>
-                <% films.forEach(f => { %>
-                    <% let linkDel=`#`%>
-                    <li>
-                        <%= `${f.genre} ${f.titre} ${f.description} ${f.date_sortie} ${f.image} ` %>
-                    </li>
-                    <% }) %>
-            </ul>
-        </div>
+    <form class="d-flex gab-3 " action="/admin" method="post">
+      <div class="m-3">
+        <label for="genre" class="form-label">Genre</label>
+        <input type="text" class="form-control" id="genre" name="genre">
       </div>
-    </div>
-    
+      <div class="m-3 ">
+        <label for="titre" class="form-label">Titre</label>
+        <input type="text" class="form-control" id="titre" name="titre">
+      </div>
+      <div class="m-3 ">
+        <label for="description" class="form-label">Description </label>
+        <input type="text" class="form-control" id="description" name="description">
+      </div>
+      <div class="m-3">
+        <label for="date" class="form-label">Date de Sortie</label>
+        <input type="date" class="form-control" id="date" name="date">
+      </div>
+      <div class="m-3">
+        <label for="image" class="form-label">Image</label>
+        <input type="file" class="form-control" id="image" name="image">
+      </div>
+      <div class="m-3 mt-5">
+        <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+      </div>
+    </form>
+  </div>
+<div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+    <h3>Liste de films</h3>
+<div>
+
+</div>
+  </div>
+  <% } else { %>
+  <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+    <h3>Liste de films</h3>
+<div>
+ 
+</div>
+  </div>
+  <% } %>
+
+
 </body>
+
 </html>

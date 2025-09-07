@@ -3,7 +3,7 @@ import userRepository from '../repositories/user.repository.js'
 import bcrypt from "bcrypt";
 
 const signup = async (req, res, next) => {
-    const user = await userRepository.save(req.body)    
+    const user = await userRepository.save(req.body)
     try {
         if (user == null) {
             res.render('signup',
@@ -25,19 +25,16 @@ const signup = async (req, res, next) => {
 }
 
 const login = async (req, res, next) => {
-    console.log(req.body);
     const user = await userRepository.getUser(req.body.email)
-    try {  
-        if (await bcrypt.compare(req.body.password, user[0]['password'])) {
-            if(user[0]['role']=='admin'){
-                res.render('admin',
-                    console.log("Login est succes")
-                )    
-            }else{
-                res.render('abonne',
-                    console.log("Login est succes") 
-            )}
+    try {
+        if (await bcrypt.compare(req.body.password, user[0].password)) {
+
+            req.session.user = {
+                role: user[0].role,
+                nom:user[0].nom
+            };            
             
+            res.redirect('admin' )
         }
         else {
             res.render('login',
@@ -52,4 +49,14 @@ const login = async (req, res, next) => {
 
 }
 
-export default { signup, login }
+const logout = (req, res, next) => {
+    req.session.destroy((err) => {
+        if (err) {
+            console.log(err);
+            return res.redirect('/'); 
+        }
+     res.redirect('/');
+    });
+};
+
+export default { signup, login, logout }

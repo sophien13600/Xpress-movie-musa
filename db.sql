@@ -1,4 +1,4 @@
--- Active: 1750235362805@@127.0.0.1@3306@xpress_movie
+-- Active: 1754772058359@@127.0.0.1@3306@xpress_movie
 CREATE DATABASE xpress_movie;
 use xpress_movie;
 
@@ -42,3 +42,16 @@ values (
         '1234',
         'admin'
     );
+
+    INSERT INTO
+    films
+values (
+        null,
+        'Action',
+        'Ant man',
+        '',
+        '',
+        ''
+    );
+
+    SELECT * FROM films;

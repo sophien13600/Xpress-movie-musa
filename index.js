@@ -15,6 +15,11 @@ app.use(session({
 
 }))
 
+app.use((req, res, next) => {
+  res.locals.user = req.session.user || null;
+  next();
+});
+
 // utiliser le middleware body-parser
 app.use(express.urlencoded())
 
@@ -42,10 +47,10 @@ app.get(['/login'], (req, res) => {
 app.get(['/signup'], (req, res) => {
     res.render('signup')
 })
+
 app.get(['/admin'], (req, res) => {
     res.render('admin')
 })
-
 
 app.all("/*splat", (req, res) => {
     res
