@@ -1,31 +1,58 @@
 import connection from '../config/db.config.js';
 
-const save = async (film) => {   
-        try {
-            const INSERT = "INSERT INTO films values (null, ?, ?, ?,?,?)"
-            const resultat = await connection.query(INSERT, [film.titre, film.genre, film.description, film.date_sortie, film.image]);
-            film.id = resultat[0].insertId
-    
-            return film;
-        } catch (error) {
-            console.log(error);
-            return null;
-        }
-    
-}
-
-const findAll = async ()=>{
+const save = async (film) => {
     try {
-        const SELECT = "SELECT * from films"
-        const films=  await connection.query(SELECT)
-        console.log(films);
-        
-        return films ;
+        const INSERT = "INSERT INTO films values (null, ?, ?, ?,?,?)"
+        const resultat = await connection.query(INSERT, [film.titre, film.genre, film.description, film.date, film.image]);
+        film.id = resultat[0].insertId
+        return resultat;
     } catch (error) {
         console.log(error);
         return null;
     }
-    
+
 }
 
-export default { save, findAll };
+const findAllFilm = async () => {
+    try {
+        const SELECT = "SELECT * from films"
+        const [films] = await connection.query(SELECT)
+        return films;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+const findFilmById = async (id) => {
+    try {
+        const SELECT = "SELECT * from films where id=?"
+        const [film] = await connection.query(SELECT, id)
+        console.log(film);
+        return film;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+const deleteFilmById = async (id) => {
+    try {
+        const DELETE = "Delete from films where id=?"
+        await connection.query(DELETE, id);
+        return true;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+const updateFilmById = async(film, id)=> {
+    try {
+        const UPDATE = "UPDATE films set genre=?, titre= ?, description= ?, date_sortie= ?, image= ?  where id =?"
+        const resultat = await connection.query(UPDATE, [film.genre, film.titre, film.description, film.date_sortie, film.image, id]);
+        return resultat;   
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+export default { save, findAllFilm, deleteFilmById, findFilmById, updateFilmById };

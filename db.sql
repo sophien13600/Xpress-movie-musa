@@ -1,4 +1,4 @@
--- Active: 1754772058359@@127.0.0.1@3306@xpress_movie
+-- Active: 1750235362805@@127.0.0.1@3306@xpress_movie
 CREATE DATABASE xpress_movie;
 use xpress_movie;
 
@@ -55,3 +55,4 @@ values (
     );
 
     SELECT * FROM films;
+    DELETE FROM films where id =24;

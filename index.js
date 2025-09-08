@@ -3,6 +3,7 @@ import 'dotenv/config'
 import session from 'express-session'
 import userRouter from './src/routes/auth.route.js';
 import filmRouter from './src/routes/film.route.js';
+import filmRepository from './src/repositories/film.repository.js';
 
 
 const app = express()
@@ -38,9 +39,7 @@ app.set('views', import.meta.dirname + '/templates')
 // modifier le delimiter
 // app.set('view options', { delimiter: '?' })
 
-app.get(['/', '/home', '/accueil'], (req, res) => {
-    res.render('index')
-})
+
 app.get(['/login'], (req, res) => {
     res.render('login')
 })
@@ -48,9 +47,10 @@ app.get(['/signup'], (req, res) => {
     res.render('signup')
 })
 
-app.get(['/admin'], (req, res) => {
-    res.render('admin')
-})
+// app.get(['/admin'], async (req, res) => {
+//     const films = await filmRepository.findAll();
+//     res.render('admin', { films: films || [] })
+// })
 
 app.all("/*splat", (req, res) => {
     res
