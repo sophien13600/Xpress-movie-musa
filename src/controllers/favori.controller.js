@@ -23,17 +23,24 @@ const saveFavoriFilm= async(req, res, next)=>{
 }
 
 const showFavoriFilm = async (req, res, next) =>{
- 
+ if(req.session.user){
   const films = await favoriRepository.findUserFavori(req.session.user.id);
 
   if (films.length > 0) {
-    res.render('/favori', { films });
+    res.render('favori', { films });
   } else {
-    res.render('/favori', {
+    res.render('favori', {
       films: [],
       erreurs: "Aucun film trouvé"
     });
   }
+}
+else{
+  res.render('favori', {
+      films: [],
+      erreurs: "Aucun film trouvé"
+    });
+}
 }
 
 const removeFavoriFilm = async (req, res, next) => {

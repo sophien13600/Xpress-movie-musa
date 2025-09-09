@@ -1,4 +1,4 @@
--- Active: 1750235362805@@127.0.0.1@3306@xpress_movie
+-- Active: 1754772058359@@127.0.0.1@3306@xpress_movie
 CREATE DATABASE xpress_movie;
 use xpress_movie;
 
@@ -22,7 +22,7 @@ CREATE TABLE films (
     date_sortie DATE,
     image VARCHAR(250),
     user_id INT,
-    Foreign Key (user_id) REFERENCES users(id)
+    Foreign Key (user_id) REFERENCES users(id)  ON DELETE CASCADE
 );
 
 SELECT * FROM films;
@@ -32,8 +32,8 @@ CREATE Table favoris (
     date_ajoute DATE,
     film_id INT,
     user_id INT, 
-    Foreign Key (user_id) REFERENCES users (id),
-    Foreign Key (film_id) REFERENCES films(id)
+    Foreign Key (user_id) REFERENCES users (id)  ON DELETE CASCADE,
+    Foreign Key (film_id) REFERENCES films(id)  ON DELETE CASCADE
 );
 INSERT into favoris VALUES (null, 2025-04-16, 55 );
 SELECT * FROM favoris ;
@@ -42,7 +42,7 @@ SELECT * FROM films
 JOIN favoris as f on f.film_id=films.id where f.film_id=3 and f.user_id = 12;
 
 select * FROM users;
-SELECT * FROM films    JOIN favoris as f on f.film_id = films.id  ;
+SELECT * FROM films  JOIN favoris as f on f.film_id = films.id  ;
 
 
 INSERT INTO

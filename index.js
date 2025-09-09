@@ -49,9 +49,9 @@ app.get(['/signup'], (req, res) => {
     res.render('signup')
 })
 app.get(['/favori'], async (req, res) => {
-    const films = await favoriRepository.findAllFavori();
-    res.render('favori', { films: films || [] })
+    res.render('favori')
 })
+
 
 
 app.all("/*splat", (req, res) => {

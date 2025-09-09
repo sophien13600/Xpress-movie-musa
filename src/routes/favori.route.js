@@ -6,6 +6,7 @@ const router = express.Router()
 
 router.get('/admin/favori/:id', favoriController.saveFavoriFilm);
 router.get('/admin/favori/delete/:id', favoriController.removeFavoriFilm);
+router.get('/favori', favoriController.showFavoriFilm)
 
 
 export default router;

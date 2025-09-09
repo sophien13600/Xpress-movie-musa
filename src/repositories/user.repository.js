@@ -29,11 +29,11 @@ const getUser = async (email)=>{
 
 const deleteUser = async (id) => {
     try {
-        const DELETE ="DELETE from users  where id=?"
-        return await connection.query(DELETE, id);
+        const DELETE ="DELETE from users where id=?"
+        return await connection.query(DELETE, [id]);
         
     } catch (error) {
-        console.log(error = " User n'est pas trouvé");
+        console.log("User n'est pas trouvé :", error);
         return null;
     }
 }

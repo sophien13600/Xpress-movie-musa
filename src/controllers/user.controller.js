@@ -73,9 +73,7 @@ const removeUser = async(req, res, next) =>{
             res.redirect('/');
         });
     } else {
-        res.redirect('admin')
-        
+        res.redirect('admin')    
     }
-
 }
 export default { signup, login, logout, removeUser }
