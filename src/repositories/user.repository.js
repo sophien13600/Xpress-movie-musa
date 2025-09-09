@@ -25,8 +25,17 @@ const getUser = async (email)=>{
         console.log(error=" Email n'est pas trouvé");
         return null;
     }
-
-
 }
 
-export default { save, getUser }
+const deleteUser = async (id) => {
+    try {
+        const DELETE ="DELETE from users  where id=?"
+        return await connection.query(DELETE, id);
+        
+    } catch (error) {
+        console.log(error = " User n'est pas trouvé");
+        return null;
+    }
+}
+
+export default { save, getUser, deleteUser }

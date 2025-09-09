@@ -20,17 +20,30 @@ CREATE TABLE films (
     genre VARCHAR(100) NOT null,
     description VARCHAR(250),
     date_sortie DATE,
-    image VARCHAR(250)
-
+    image VARCHAR(250),
+    user_id INT,
+    Foreign Key (user_id) REFERENCES users(id)
 );
+
 SELECT * FROM films;
 
 CREATE Table favoris (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
     date_ajoute DATE,
     film_id INT,
+    user_id INT, 
+    Foreign Key (user_id) REFERENCES users (id),
     Foreign Key (film_id) REFERENCES films(id)
 );
+INSERT into favoris VALUES (null, 2025-04-16, 55 );
+SELECT * FROM favoris ;
+
+SELECT * FROM films
+JOIN favoris as f on f.film_id=films.id where f.film_id=3 and f.user_id = 12;
+
+select * FROM users;
+SELECT * FROM films    JOIN favoris as f on f.film_id = films.id  ;
+
 
 INSERT INTO
     users

@@ -1,9 +1,12 @@
-import filmRepository from '../repositories/film.repository.js'
+import filmRepository from '../repositories/film.repository.js';
+
 
 const saveFilm = async (req, res, next) => {
+
+
     try {
         if (req.body.genre != '' || req.body.titre != '') {
-            const film = await filmRepository.save(req.body)
+          const film = await filmRepository.save(req.body, req.session.user.id)
             if (film == null) {
                 console.log("Probleme d'insertion")
             }
@@ -73,4 +76,12 @@ const updateFilm = async (req, res, next) => {
   res.redirect('/admin');
 
 }
+
+
+
+
+
+
+
+
 export default { saveFilm, showFilms, removeFilm, updateFilm }

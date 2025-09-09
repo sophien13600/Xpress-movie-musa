@@ -4,19 +4,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
+  <title>Document</title>
 </head>
 
 <body>
   <%-include('partials/header') %>
-
-
   <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
-    <h2> Bienvenu notre platform de films</h2>
-    <h3>Liste de films</h3>
+    <h2>Liste de Fovaries</h2>
+    <% if (user==null) { %>
+    <h2>Connectez-vous pour voir votre liste de favoris</h2>
+    <% } 
+     else { %>
     <div class="d-flex m-3">
       <% films.forEach(f => { %>
-      <% let link=`admin/favori/${f.id}` %>
+      <% let link=`admin/favori/delete/${f.id}` %>
       <div class="card m-3  " style="width: 18rem; ">
         <img src="/assets/<%= `${f.image}` %> " class="card-img-top" alt="...">
         <div class="card-body ">
@@ -24,16 +25,13 @@
           <h5 class="card-title"> <%= `${f.titre}`  %> </h5>
           <h5 class="card-title"> <%= new Date(f.date_sortie).toLocaleDateString() %> </h5>
           <p class="card-text"><%= `${f.description}`  %> </p>
-          <a href="<%= link %>" class="btn btn-primary">Ajouter à Favorie</a>
+          <a href="<%= link %>" class="btn btn-primary">Supprimer</a>
         </div>
       </div>
       <%})%>
     </div>
-  </div>
-
-<footer>
-  <%-include('partials/footer', {year: 2025}) %>
-</footer>
+    <%}%>
+    </div>
+    
 </body>
-
 </html>

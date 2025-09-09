@@ -7,5 +7,6 @@ const router = express.Router()
 router.post('/signup', userController.signup)
 router.post('/login', userController.login)
 router.get('/logout', userController.logout)
+router.get('/admin/delete/:id', userController.removeUser)
 
 export default router

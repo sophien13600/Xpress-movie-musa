@@ -1,9 +1,9 @@
 import connection from '../config/db.config.js';
 
-const save = async (film) => {
+const save = async (film, user_id) => {
     try {
-        const INSERT = "INSERT INTO films values (null, ?, ?, ?,?,?)"
-        const resultat = await connection.query(INSERT, [film.titre, film.genre, film.description, film.date, film.image]);
+        const INSERT = "INSERT INTO films values (null, ?, ?, ?,?,?,?)"
+        const resultat = await connection.query(INSERT, [film.titre, film.genre, film.description, film.date, film.image, user_id]);
         film.id = resultat[0].insertId
         return resultat;
     } catch (error) {
@@ -55,4 +55,7 @@ const updateFilmById = async(film, id)=> {
         return null;
     }
 }
+
+
+
 export default { save, findAllFilm, deleteFilmById, findFilmById, updateFilmById };
