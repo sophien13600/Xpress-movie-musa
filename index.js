@@ -51,7 +51,9 @@ app.get(['/signup'], (req, res) => {
 app.get(['/favori'], async (req, res) => {
     res.render('favori')
 })
-
+app.get(['/search'], async (req, res) => {
+    res.render('search')
+})
 
 
 app.all("/*splat", (req, res) => {

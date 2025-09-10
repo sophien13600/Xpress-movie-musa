@@ -26,6 +26,7 @@ CREATE TABLE films (
 );
 
 SELECT * FROM films;
+SELECT * FROM films WHERE user_id=1;
 
 CREATE Table favoris (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,

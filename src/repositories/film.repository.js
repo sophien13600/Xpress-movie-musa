@@ -23,10 +23,11 @@ const findAllFilm = async () => {
         return null;
     }
 }
-const findFilmById = async (id) => {
+
+const findAdminFilm= async ( user_id) => {
     try {
-        const SELECT = "SELECT * from films where id=?"
-        const [film] = await connection.query(SELECT, id)
+        const SELECT = "SELECT * from films where  user_id=?"
+        const [film] = await connection.query(SELECT, [user_id])
         console.log(film);
         return film;
     } catch (error) {
@@ -55,7 +56,20 @@ const updateFilmById = async(film, id)=> {
         return null;
     }
 }
+// film search
+const searchFilms = async(text)=>{
+
+  try {
+        const SELECT = "SELECT * FROM films WHERE titre LIKE ? OR genre LIKE ?"
+        const [film] = await connection.query(SELECT, [`%${text}%`, `%${text}%`])
+        console.log(film);
+        return film;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+
+}
 
 
-
-export default { save, findAllFilm, deleteFilmById, findFilmById, updateFilmById };
+export default { save, findAllFilm, deleteFilmById, findAdminFilm, updateFilmById, searchFilms };

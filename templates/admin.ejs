@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin</title>
+  <title>Xpress-Movie</title>
 </head>
 
 <body>
@@ -98,7 +98,7 @@
       </thead>
 
       <tbody>
-        <% films.forEach(f => { %>
+        <% adminFilms.forEach(f => { %>
         <tr>
           <td class="w-25">
             <input type="text" class="form-control" id="genre" name="genre" value="<%= f.genre %>" form="form-<%= f.id %>">
