@@ -59,8 +59,6 @@ const removeFilm = async (req, res, next) => {
 
 }
 const updateFilm = async (req, res, next) => {
-  console.log(req.body);
-
   try {
     if (req.body.genre != '' || req.body.titre != '') {
       const film = await filmRepository.updateFilmById(req.body, req.params.id)

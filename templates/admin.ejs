@@ -9,48 +9,56 @@
 
 <body>
   <%-include('partials/header') %>
-  <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
-    <h2>Information de compte</h2>
-    <div class="d-flex">
-      <div class="mb-3 ">
-        <label for="nom" class="form-label">Nom</label>
-        <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>">
+ <div class="container mt-5">
+  <div class="card shadow-sm p-4">
+    <h2 class="mb-4 text-primary">Information de compte</h2>
+    <!-- User Info Form -->
+    <form action="/admin/update/<%= user.id %>" method="post">
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>" placeholder="Votre nom">
+        </div>
+        <div class="col-md-6">
+          <label for="prenom" class="form-label">Prenom</label>
+          <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>" placeholder="Votre prénom">
+        </div>
+        <div class="col-md-6">
+          <label for="email" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" placeholder="email@example.com">
+        </div>
+        <div class="col-md-6">
+          <label for="role" class="form-label">Role</label>
+          <select class="form-select" id="role" name="role">
+            <option value="admin" <%= user.role === "admin" ? "selected" : "" %>>Admin</option>
+            <option value="abonne" <%= user.role === "abonne" ? "selected" : "" %>>Abonne</option>
+          </select>
+        </div>
       </div>
-      <div class="mb-3 ">
-        <label for="prenom" class="form-label">Prenom</label>
-        <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>">
+      <div class="d-flex mt-4 gap-3">
+        <button type="submit" class="btn btn-success flex-fill">Modifier</button>
       </div>
-      <div class="mb-3 ">
-        <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
-      </div>
-      <div class="mb-3">
+    </form>
+
+    <!-- Password Change -->
+    <form action="/admin/update_password/<%= user.id %>" method="post" class="mt-4">
+      <div class="col-md-6">
         <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" name="password">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Nouveau mot de passe">
+        <button type="submit" class="btn btn-warning mt-3">Changer</button>
       </div>
-      <div class="mb-3">
-        <label for="role" class="form-label">Role</label>
-        <select class="form-select" id="role" name="role">
-          <option value="admin" <%= user.role === "admin" ? "selected" : "" %>>Admin</option>
-          <option value="abonne" <%= user.role === "abonne" ? "selected" : "" %>>Abonne</option>
-        </select>
-      </div>
+    </form>
 
-
+    <!-- Delete Account -->
+    <div class="mt-5 p-3 border rounded bg-light d-flex align-items-center justify-content-between">
+      <h5 class="text-danger mb-0">Supprimer votre compte</h5>
+      <% let link=`/admin/delete_user/${user.id}` %>
+      <a href="<%= link %>" class="btn btn-danger">Supprimer</a>
     </div>
-    <div class="d-flex">
-      <div class="m-3 mt-4">
-        <% let link=`admin/delete/${user.id}` %>
-        <a href="<%= link %>" class="btn btn-primary">Supprimer</a>
-      </div>
-      <div class="m-3 mt-4">
-        <% let linkUpdate=`admin/update/${user.id}` %>
-        <a href="<%= linkUpdate %>" class="btn btn-primary">Modifier</a>
-
-      </div>
-    </div>
-
   </div>
+</div>
+
+<!-- section admin -->
   <% if (user.role=='admin') { %>
   <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
     <h2> Enregister un film</h2>
@@ -81,7 +89,9 @@
       </div>
     </form>
   </div>
+  <!-- admin film list -->
   <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+    
     <h3>Liste de films</h3>
 
     <table class='table table-striped table-hover align-middle'>
@@ -92,8 +102,8 @@
           <th>Description</th>
           <th>Date Sortie</th>
           <th>Image</th>
-          <th class='text-end'>Delete</th>
-          <th class='text-end'>Update</th>
+          <th class='text-end'>Suprimer</th>
+          <th class='text-end'>Modifier</th>
         </tr>
       </thead>
 
@@ -118,12 +128,12 @@
           </td>
           <td class='text-end w-25'>
             <form id="form-<%= f.id %>" action="/admin/update/<%= f.id %>" method="post">
-              <button type="submit" class="btn btn-primary">Modifier</button>
+              <button type="submit" class="btn btn-success">Modifier</button>
             </form>
           </td>
           <td class='text-end w-25'>
             <form id="form-<%= f.id %>" action="/admin/delete/<%= f.id %>" method="get">
-              <button type="submit" class="btn btn-primary">Supprimer</button>
+              <button type="submit" class="btn btn-danger">Supprimer</button>
             </form>
           </td>
         </tr>
@@ -133,6 +143,7 @@
       </div>
   </div>
   <% } else { %>
+    <!-- Abonne film list -->
   <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
     <h3>Liste de films</h3>
     <div class="row m-3">
@@ -158,7 +169,6 @@
   <footer>
     <%-include('partials/footer', {year: 2025}) %>
   </footer>
-
 </body>
 
 </html>

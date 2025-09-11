@@ -39,6 +39,7 @@ CREATE Table favoris (
 INSERT into favoris VALUES (null, 2025-04-16, 55 );
 SELECT * FROM favoris ;
 
+SELECT * FROM films;
 SELECT * FROM films
 JOIN favoris as f on f.film_id=films.id where f.film_id=3 and f.user_id = 12;
 

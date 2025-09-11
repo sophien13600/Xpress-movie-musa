@@ -25,7 +25,7 @@ const findAllFavori = async()=>{
 const findFavoriFilmById = async (id, user_id) => {
     try {
         const SELECT = "SELECT * FROM films JOIN favoris as f on f.film_id = films.id where films.id =? and f.user_id=?; "
-                const [film] = await connection.query(SELECT, [id, user_id]);
+        const [film] = await connection.query(SELECT, [id, user_id]);
         return film;
     } catch (error) {
         console.log(error);

@@ -28,7 +28,6 @@ const findAdminFilm= async ( user_id) => {
     try {
         const SELECT = "SELECT * from films where  user_id=?"
         const [film] = await connection.query(SELECT, [user_id])
-        console.log(film);
         return film;
     } catch (error) {
         console.log(error);
@@ -62,7 +61,6 @@ const searchFilms = async(text)=>{
   try {
         const SELECT = "SELECT * FROM films WHERE titre LIKE ? OR genre LIKE ?"
         const [film] = await connection.query(SELECT, [`%${text}%`, `%${text}%`])
-        console.log(film);
         return film;
     } catch (error) {
         console.log(error);

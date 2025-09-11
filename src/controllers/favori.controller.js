@@ -1,10 +1,13 @@
 import favoriRepository from '../repositories/favori.repository.js'
+import filmRepository from '../repositories/film.repository.js';
 
 const saveFavoriFilm= async(req, res, next)=>{
- 
+  if (!req.session.user){
+    const films = await filmRepository.findAllFilm();
+   res.redirect('/');
+  } else {
+ try {
   const film = await favoriRepository.findFavoriFilmById(req.params.id, req.session.user.id)
-
-  
   if (film[0]==null) {
     const favori = await favoriRepository.addFavorie(req.params.id, req.session.user.id);
     if (favori == null) {
@@ -19,6 +22,15 @@ const saveFavoriFilm= async(req, res, next)=>{
     console.log('ce film deja exist aux favoris');
     res.redirect('/admin');
   }
+
+ } catch (error) {
+  const films = await filmRepository.findAllFilm();
+   res.render('index', {
+           erreur: ["Erreur connexion"],
+           films
+        });
+ }
+}
     
 }
 

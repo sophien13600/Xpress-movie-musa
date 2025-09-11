@@ -38,4 +38,29 @@ const deleteUser = async (id) => {
     }
 }
 
-export default { save, getUser, deleteUser }
+const updateUser = async (user) => {
+    // const saltRounds = 10;
+    // const password = await bcrypt.hash(user.password, saltRounds);
+    try {
+        const UPDATE = "UPDATE users set nom=?, prenom= ?, email= ?,  role= ?  where id =?"
+        const resultat = await connection.query(UPDATE, [user.nom, user.prenom, user.email,  user.role, user.id]); 
+        return resultat ;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+const updatePassword = async (id, pass) => {
+    const saltRounds = 10;
+    const password = await bcrypt.hash(pass, saltRounds);
+    try {
+        const UPDATE = "UPDATE users set password=?  where id =?"
+        const resultat = await connection.query(UPDATE, [password, id]); 
+        return resultat ;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
+
+export default { save, getUser, deleteUser, updateUser,updatePassword }
