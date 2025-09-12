@@ -12,15 +12,15 @@ const saveFavoriFilm= async(req, res, next)=>{
     const favori = await favoriRepository.addFavorie(req.params.id, req.session.user.id);
     if (favori == null) {
       console.log("Probleme d'insertion")
-      res.redirect('/admin');
+      res.redirect('/');
     }
     else {
       console.log(`${favori} a été ajouté au liste de favori`);
-      res.redirect('/admin');
+      res.redirect('/');
     }
   }else{
     console.log('ce film deja exist aux favoris');
-    res.redirect('/admin');
+    res.redirect('/');
   }
 
  } catch (error) {

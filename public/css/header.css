@@ -1,0 +1,9 @@
+header {
+  position: fixed; /* header’ı sabitler */
+  top: 0;          /* sayfanın en üstüne yerleştirir */
+  left: 0;         /* soldan sıfır */
+  width: 100%;     /* tüm genişliği kaplar */
+  z-index: 1000;   /* diğer içeriklerin üstünde kalır */
+  background-color: #fff; /* sayfa kaydırıldığında arka planı görünür yap */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1); /* isteğe bağlı gölge efekti */
+}

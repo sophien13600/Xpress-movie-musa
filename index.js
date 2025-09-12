@@ -38,6 +38,8 @@ app.use('/', favoriRouter);
 app.set('view engine', 'ejs')
 app.set('views', import.meta.dirname + '/templates')
 
+app.use('/public', express.static('public'))
+
 // modifier le delimiter
 // app.set('view options', { delimiter: '?' })
 
@@ -54,6 +56,8 @@ app.get(['/favori'], async (req, res) => {
 app.get(['/search'], async (req, res) => {
     res.render('search')
 })
+
+
 
 
 app.all("/*splat", (req, res) => {

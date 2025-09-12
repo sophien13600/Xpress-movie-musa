@@ -5,11 +5,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpress-Movie</title>
+  <link rel="stylesheet" href="/public/css/index.css">
 </head>
 
 <body>
   <%-include('partials/header') %>
-  <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+  <div class="favori container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
     <h2>Liste de Fovaries</h2>
 
     <% if (user == null) { %>
@@ -21,7 +22,7 @@
     <% let link=`admin/favori/delete/${f.id}` %>
     <div class="col-md-3 mb-4"> 
       <div class="card h-100" style="width: 18rem;">
-        <img src="/assets/<%= f.image %>" class="card-img-top" alt="film" height="200px">
+        <img src="/public/assets/<%= f.image %>" class="card-img-top" alt="film" height="200px">
         <div class="card-body">
           <h5 class="card-title"><%= f.genre %></h5>
           <h5 class="card-title"><%= f.titre %></h5>
