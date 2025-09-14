@@ -5,10 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpress-Movie</title>
+  <link rel="stylesheet" href="/public/css/index.css">
 </head>
 
 <body>
+  <div class="wrapper">
+
   <%-include('partials/header') %>
+  <main class="content">
   <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
   <div class="row m-3">
       <% films.forEach(f => { %>
@@ -27,6 +31,8 @@
        </div>
       <%})%>
     </div>
+  </div>
+  </main>
   </div>
 <footer>
     <%-include('partials/footer', {year: 2025}) %>

@@ -5,11 +5,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpress-Movie</title>
+  <link rel="stylesheet" href="/public/css/index.css">
 </head>
 <body>
-<%-include('partials/header') %>
+  <div class="wrapper">
+    <%-include('partials/header') %>
+    <main class="content">
 <form action="/login" method="post">
-  <div class="container-sm p-4 w-25 mt-5 border rounded bg-light justify-content-center align-items-center">
+  <div class="container-sm p-4 w-25 mt-5 border rounded bg-dark text-white justify-content-center align-items-center">
     <div class="">
       <div class="mb-3 ">
         <label for="email" class="form-label">Email address</label>
@@ -19,13 +22,17 @@
         <label for="exampleInputPassword1" class="form-label">Password</label>
         <input type="password" class="form-control" id="exampleInputPassword1" name="password">
       </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
+      <button type="submit" class="btn btn-outline-success w-100">Login</button>
     </div>
   </div>
   </form>
-<!-- <footer>
+    </main>
+  </div>
+
+
+<footer>
   <%-include('partials/footer', {year: 2025}) %>
-</footer> -->
+</footer>
 </body>
 
 </html>

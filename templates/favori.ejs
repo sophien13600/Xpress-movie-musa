@@ -6,12 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpress-Movie</title>
   <link rel="stylesheet" href="/public/css/index.css">
+
 </head>
 
 <body>
-  <%-include('partials/header') %>
-  <div class="favori container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+  <div class="wrapper">
+ <%-include('partials/header') %>
+ <main class="content">
+   <div class="  container p-1 w-100 mt-5 border rounded bg-dark justify-content-center align-items-center">
+
     <h2>Liste de Fovaries</h2>
+    </div>
+ 
+  <div class=" container p-1 w-100 mt-5 border rounded bg-dark justify-content-center align-items-center"  style=" color: white;">
+    
 
     <% if (user == null) { %>
     <h2>Connectez-vous pour voir votre liste de favoris</h2>
@@ -36,7 +44,11 @@
 </div>
 
     <%}%>
-    </div>
+</div>
+ </main>
+  </div>
+ 
+
     <footer>
     <%-include('partials/footer', {year: 2025}) %>
   </footer>

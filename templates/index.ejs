@@ -6,14 +6,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Xpress-Movie</title>
   <link rel="stylesheet" href="/public/css/index.css">
-   <link rel="stylesheet" href="/public/css/header.css">
+   
 </head>
 
 <body>
-  <%-include('partials/header') %>
-
-
-  <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+<div class="wrapper">
+  <header>
+  <%- include('partials/header') %>
+  </header>
+  <main class="content">
+ <div class="container p-1 w-100 mt-5 border rounded bg-dark justify-content-center align-items-center">
     <h2> Bienvenu notre platform de films</h2>
     <h3>Liste de films</h3>
     <div class="row m-3">
@@ -35,9 +37,13 @@
     </div>
   </div>
 
-<footer>
-  <%-include('partials/footer', {year: 2025}) %>
-</footer>
+  </main>
+
+  </div>
+
+
+  <%- include('partials/footer', {year: 2025}) %>
+
 </body>
 
 </html>
