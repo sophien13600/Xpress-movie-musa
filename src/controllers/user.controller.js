@@ -83,7 +83,7 @@ const updateUser = async (req, res, next) => {
     const adminFilms = await filmRepository.findAdminFilm(req.session.user.id);
 
     try {
-        const u = await userRepository.updateUser(req.body);
+        const u = await userRepository.updateUser(req.body, req.params.id);
         if (u) {
             const user = await userRepository.getUser(req.body.email);
             req.session.user = {

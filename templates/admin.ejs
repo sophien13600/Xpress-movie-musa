@@ -13,19 +13,19 @@
   <div class="card shadow-sm p-4">
     <h2 class="mb-4 text-primary">Information de compte</h2>
     <!-- User Info Form -->
-    <form action="/admin/update/<%= user.id %>" method="post">
+    <form action="/admin/update_user/<%= user.id %>" method="post">
       <div class="row g-3">
         <div class="col-md-6">
           <label for="nom" class="form-label">Nom</label>
-          <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>" placeholder="Votre nom">
+          <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>">
         </div>
         <div class="col-md-6">
           <label for="prenom" class="form-label">Prenom</label>
-          <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>" placeholder="Votre prénom">
+          <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>" >
         </div>
         <div class="col-md-6">
           <label for="email" class="form-label">Email address</label>
-          <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" placeholder="email@example.com">
+          <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>" >
         </div>
         <div class="col-md-6">
           <label for="role" class="form-label">Role</label>
@@ -127,7 +127,7 @@
             <img src="/public/assets/<%= f.image %>" class="card-img-top" style="width: 50px; height: 50px; border-radius: 2px;" alt="...">
           </td>
           <td class='text-end w-25'>
-            <form id="form-<%= f.id %>" action="/admin/update/<%= f.id %>" method="post">
+            <form id="form-<%= f.id %>" action="/admin/update_film/<%= f.id %>" method="post">
               <button type="submit" class="btn btn-success">Modifier</button>
             </form>
           </td>

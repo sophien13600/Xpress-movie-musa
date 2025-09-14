@@ -4,7 +4,6 @@ import session from 'express-session'
 import userRouter from './src/routes/auth.route.js';
 import filmRouter from './src/routes/film.route.js';
 import favoriRouter from './src/routes/favori.route.js';
-import favoriRepository from './src/repositories/favori.repository.js';
 
 
 const app = express()

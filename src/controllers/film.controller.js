@@ -40,9 +40,6 @@ const showFilms = async (req, res, next) => {
     });
   }
 }
-
-
-
 const removeFilm = async (req, res, next) => {
   const f = await filmRepository.deleteFilmById(req.params.id)
   if (f == null) {
@@ -58,6 +55,7 @@ const removeFilm = async (req, res, next) => {
   }
 
 }
+
 const updateFilm = async (req, res, next) => {
   try {
     if (req.body.genre != '' || req.body.titre != '') {
@@ -75,6 +73,7 @@ const updateFilm = async (req, res, next) => {
   }
   catch (erreur) {
     console.log(erreur);
+      res.redirect('/admin');
   }
   res.redirect('/admin');
 

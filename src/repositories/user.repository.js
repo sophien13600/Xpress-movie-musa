@@ -38,12 +38,10 @@ const deleteUser = async (id) => {
     }
 }
 
-const updateUser = async (user) => {
-    // const saltRounds = 10;
-    // const password = await bcrypt.hash(user.password, saltRounds);
-    try {
+const updateUser = async (user,id) => {
+     try {
         const UPDATE = "UPDATE users set nom=?, prenom= ?, email= ?,  role= ?  where id =?"
-        const resultat = await connection.query(UPDATE, [user.nom, user.prenom, user.email,  user.role, user.id]); 
+        const resultat = await connection.query(UPDATE, [user.nom, user.prenom, user.email,  user.role, id]); 
         return resultat ;
     } catch (error) {
         console.log(error);
