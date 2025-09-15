@@ -20,11 +20,11 @@ html, body {
 
 
 .content {
-  flex: 1 0 auto;      /* main footer’ı iter */
-  display: block;       /* flex card/table child sorununu önler */
-  padding-bottom: 150px; /* footer yüksekliği kadar boşluk */
+  flex: 1 0 auto;     
+  display: block;       
+  padding-bottom: 150px; 
 }
 
 footer {
-  position: relative;   /* kesinlikle absolute/fixed olmasın */
+  position: relative;   
 }

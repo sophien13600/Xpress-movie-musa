@@ -1,0 +1,34 @@
+h2,
+p {
+
+    color: white !important;
+    text-align: center !important;
+
+}
+
+html,
+body {
+    background-color: black !important;
+    height: 100%;
+    margin: 0;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+.content {
+    flex: 1 0 auto;
+    display: block;
+
+    padding-bottom: 150px !important;
+ 
+}
+
+footer {
+    position: relative;
+  
+}

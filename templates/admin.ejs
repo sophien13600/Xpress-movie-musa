@@ -1,99 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xpress-Movie</title>
-    <link rel="stylesheet" href="/public/css/index.css">
-</head>
-
-<body>
-<div class="wrapper">
-  <header>
-  <%- include('partials/header') %>
-  </header>
- <main class="content">
-    <div class="container mt-5">
-      <div class="card shadow-sm p-4">
-        <h2 class="mb-4 text-dark">Information de compte</h2>
-        <!-- User Info Form -->
-        <form action="/admin/update/user/<%= user.id %>" method="post">
-          <div class="row g-3">
-            <div class="col-md-6">
-              <label for="nom" class="form-label">Nom</label>
-              <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>">
+  <%- include('partials/head') %>
+  <div class="wrapper">
+    <header>
+      <%- include('partials/header') %>
+    </header>
+    <main class="content">
+      <div class="container mt-5">
+        <div class="card shadow-sm p-4">
+          <h2 class="mb-4 text-dark">Information de compte</h2>
+          <!-- User Info Form -->
+          <form action="/admin/update/user/<%= user.id %>" method="post">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="nom" class="form-label">Nom</label>
+                <input type="text" class="form-control" id="nom" name="nom" value="<%= user.nom %>">
+              </div>
+              <div class="col-md-6">
+                <label for="prenom" class="form-label">Prenom</label>
+                <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>">
+              </div>
+              <div class="col-md-6">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
+              </div>
+              <div class="col-md-6">
+                <label for="role" class="form-label">Role</label>
+                <select class="form-select" id="role" name="role">
+                  <option value="admin" <%=user.role==="admin" ? "selected" : "" %>>Admin</option>
+                  <option value="abonne" <%=user.role==="abonne" ? "selected" : "" %>>Abonne</option>
+                </select>
+              </div>
             </div>
-            <div class="col-md-6">
-              <label for="prenom" class="form-label">Prenom</label>
-              <input type="text" class="form-control" id="prenom" name="prenom" value="<%= user.prenom %>">
+            <div class="d-flex mt-4 gap-3">
+              <button type="submit" class="btn btn-success flex-fill">Modifier</button>
             </div>
-            <div class="col-md-6">
-              <label for="email" class="form-label">Email address</label>
-              <input type="email" class="form-control" id="email" name="email" value="<%= user.email %>">
-            </div>
-            <div class="col-md-6">
-              <label for="role" class="form-label">Role</label>
-              <select class="form-select" id="role" name="role">
-                <option value="admin" <%=user.role==="admin" ? "selected" : "" %>>Admin</option>
-                <option value="abonne" <%=user.role==="abonne" ? "selected" : "" %>>Abonne</option>
-              </select>
-            </div>
-          </div>
-          <div class="d-flex mt-4 gap-3">
-            <button type="submit" class="btn btn-success flex-fill">Modifier</button>
-          </div>
-        </form>
+          </form>
 
-        <!-- Password Change -->
-        <form action="/admin/update/password/<%= user.id %>" method="post" class="mt-4">
-          <div class="col-md-6">
-            <label for="password" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" name="password"
-              placeholder="Nouveau mot de passe">
-            <button type="submit" class="btn btn-warning mt-3">Changer</button>
-          </div>
-        </form>
+          <!-- Password Change -->
+          <form action="/admin/update/password/<%= user.id %>" method="post" class="mt-4">
+            <div class="col-md-6">
+              <label for="password" class="form-label">Password</label>
+              <input type="password" class="form-control" id="password" name="password" placeholder="Nouveau mot de passe">
+              <button type="submit" class="btn btn-warning mt-3">Changer</button>
+            </div>
+          </form>
 
-        <!-- Delete Account -->
-        <div class="mt-5 p-3 border rounded bg-light d-flex align-items-center justify-content-between">
-          <h5 class="text-danger mb-0">Supprimer votre compte</h5>
-          <% let link=`/admin/delete_user/${user.id}` %>
+          <!-- Delete Account -->
+          <div class="mt-5 p-3 border rounded bg-light d-flex align-items-center justify-content-between">
+            <h5 class="text-danger mb-0">Supprimer votre compte</h5>
+            <% let link=`/admin/delete_user/${user.id}` %>
             <a href="<%= link %>" class="btn btn-danger">Supprimer</a>
+          </div>
         </div>
       </div>
-    </div>
 
-    <!-- section admin -->
-    <% if (user.role=='admin' ) { %>
+      <!-- section admin -->
+      <% if (user.role=='admin' ) { %>
       <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
         <h3> Enregister un film</h2>
 
-        <form class="d-flex gab-3 " action="" method="post">
-          <div class="m-3">
-            <label for="genre" class="form-label">Genre</label>
-            <input type="text" class="form-control" id="genre" name="genre">
-          </div>
-          <div class="m-3 ">
-            <label for="titre" class="form-label">Titre</label>
-            <input type="text" class="form-control" id="titre" name="titre">
-          </div>
-          <div class="m-3 ">
-            <label for="description" class="form-label">Description </label>
-            <input type="text" class="form-control" id="description" name="description">
-          </div>
-          <div class="m-3">
-            <label for="date" class="form-label">Date de Sortie</label>
-            <input type="date" class="form-control" id="date" name="date">
-          </div>
-          <div class="m-3">
-            <label for="image" class="form-label">Image</label>
-            <input type="file" class="form-control" id="image" name="image">
-          </div>
-          <div class="m-3 mt-5">
-            <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
-          </div>
-        </form>
+          <form class="d-flex gab-3 " action="" method="post">
+            <div class="m-3">
+              <label for="genre" class="form-label">Genre</label>
+              <input type="text" class="form-control" id="genre" name="genre">
+            </div>
+            <div class="m-3 ">
+              <label for="titre" class="form-label">Titre</label>
+              <input type="text" class="form-control" id="titre" name="titre">
+            </div>
+            <div class="m-3 ">
+              <label for="description" class="form-label">Description </label>
+              <input type="text" class="form-control" id="description" name="description">
+            </div>
+            <div class="m-3">
+              <label for="date" class="form-label">Date de Sortie</label>
+              <input type="date" class="form-control" id="date" name="date">
+            </div>
+            <div class="m-3">
+              <label for="image" class="form-label">Image</label>
+              <input type="file" class="form-control" id="image" name="image">
+            </div>
+            <div class="m-3 mt-5">
+              <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
+            </div>
+          </form>
       </div>
       <!-- admin film list -->
       <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
@@ -115,81 +104,78 @@
 
           <tbody>
             <% adminFilms.forEach(f=> { %>
-              <tr>
-                <td class="w-25">
-                  <input type="text" class="form-control" id="genre" name="genre" value="<%= f.genre %>"
-                    form="form-<%= f.id %>">
-                </td>
-                <td class="w-25">
-                  <input type="text" class="form-control" id="titre" name="titre" value="<%= f.titre %>"
-                    form="form-<%= f.id %>">
-                </td>
-                <td class="w-25">
-                  <input type="text" class="form-control" id="description" name="description"
-                    value="<%= f.description %>" form="form-<%= f.id %>">
-                </td>
-                <td class="w-25">
-                  <input type="date" class="form-control" id="date_sortie" name="date_sortie"
-                    value="<%= f.date_sortie ? new Date(f.date_sortie).toISOString().split('T')[0] : '' %>"
-                    form="form-<%= f.id %>">
-                </td>
-                <td class="w-25">
-                  <input type="hidden" class="form-control" id="image" name="image" value="<%= f.image %>"
-                    form="form-<%= f.id %>">
-                  <img src="/public/assets/<%= f.image %>" class="card-img-top"
-                    style="width: 50px; height: 50px; border-radius: 2px;" alt="...">
-                </td>
-                <td class='text-end w-25'>
-                  <form id="form-<%= f.id %>" action="/admin/update/film/<%= f.id %>" method="post">
-                    <button type="submit" class="btn btn-success">Modifier</button>
-                  </form>
-                </td>
-                <td class='text-end w-25'>
-                  <form id="form-<%= f.id %>" action="/admin/delete/film/<%= f.id %>" method="get">
-                    <button type="submit" class="btn btn-danger">Supprimer</button>
-                  </form>
-                </td>
-              </tr>
-              <% }) %>
+            <tr>
+              <td class="w-25">
+                <input type="text" class="form-control" id="genre" name="genre" value="<%= f.genre %>" form="form-<%= f.id %>">
+              </td>
+              <td class="w-25">
+                <input type="text" class="form-control" id="titre" name="titre" value="<%= f.titre %>" form="form-<%= f.id %>">
+              </td>
+              <td class="w-25">
+                <input type="text" class="form-control" id="description" name="description" value="<%= f.description %>" form="form-<%= f.id %>">
+              </td>
+              <td class="w-25">
+                <input type="date" class="form-control" id="date_sortie" name="date_sortie" value="<%= f.date_sortie ? new Date(f.date_sortie).toISOString().split('T')[0] : '' %>" form="form-<%= f.id %>">
+              </td>
+              <td class="w-25">
+                <input type="hidden" class="form-control" id="image" name="image" value="<%= f.image %>" form="form-<%= f.id %>">
+                <img src="/public/assets/<%= f.image %>" class="card-img-top" style="width: 50px; height: 50px; border-radius: 2px;" alt="...">
+              </td>
+              <td class='text-end w-25'>
+                <form id="form-<%= f.id %>" action="/admin/update/film/<%= f.id %>" method="post">
+                  <button type="submit" class="btn btn-success">Modifier</button>
+                </form>
+              </td>
+              <td class='text-end w-25'>
+                <form id="form-<%= f.id %>" action="/admin/delete/film/<%= f.id %>" method="get">
+                  <button type="submit" class="btn btn-danger">Supprimer</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
           </tbody>
           <div>
           </div>
       </div>
       <% } else { %>
-        <!-- Abonne film list -->
-        <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
-          <h3>Liste de films</h3>
-          <div class="row m-3">
-            <% films.forEach(f=> { %>
-              <% let link=`/admin/favori/${f.id}` %>
-                <div class="col-md-3 mb-4">
-                  <div class="card h-100" style="width: 18rem; ">
-                    <img src="/public/assets/<%= `${f.image}` %> " class="card-img-top" alt="film" height="200px">
-                    <div class="card-body">
-                      <h5 class="card-title">
-                        <%= `${f.genre}` %>
-                      </h5>
-                      <h5 class="card-title">
-                        <%= `${f.titre}` %>
-                      </h5>
-                      <h5 class="card-title">
-                        <%= new Date(f.date_sortie).toLocaleDateString() %>
-                      </h5>
-                      <p class="card-text">
-                        <%= `${f.description}` %>
-                      </p>
-                      <a href="<%= link %>" class="btn btn-primary">Ajouter à Favorie</a>
-                    </div>
-                  </div>
-                </div>
-                <%})%>
+      <!-- Abonne film list -->
+      <div class="container p-1 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
+        <h3>Liste de films</h3>
+        <div class="row m-3">
+          <% films.forEach(f=> { %>
+          <% let link=`/admin/favori/${f.id}` %>
+          <div class="col-md-3 mb-4">
+            <div class="card h-100" style="width: 18rem; ">
+              <img src="/public/assets/<%= `${f.image}` %> " class="card-img-top" alt="film" height="200px">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= `${f.genre}` %>
+                </h5>
+                <h5 class="card-title">
+                  <%= `${f.titre}` %>
+                </h5>
+                <h5 class="card-title">
+                  <%= new Date(f.date_sortie).toLocaleDateString() %>
+                </h5>
+                <p class="card-text">
+                  <%= `${f.description}` %>
+                </p>
+                <a href="<%= link %>" class="btn btn-primary">Ajouter aux Favoris</a>
+              </div>
+            </div>
           </div>
+          <%})%>
         </div>
-      <% } %>
-  </main>
- 
-</div>
-<%- include('partials/footer', {year: 2025}) %>
-</body>
+      </div>
 
-</html>
+      <% } %>
+    </main>
+
+  </div>
+
+  <!-- <%- include('partials/footer', {year: 2025}) %> -->
+
+
+  </body>
+
+  </html>

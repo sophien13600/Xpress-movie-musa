@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Xpress-Movie</title>
-  <link rel="stylesheet" href="/public/css/index.css">
-   
-</head>
-
-<body>
+  <%- include('partials/head') %>
 <div class="wrapper">
   <header>
   <%- include('partials/header') %>
@@ -29,7 +18,7 @@
           <h5 class="card-title"> <%= `${f.titre}`  %> </h5>
           <h5 class="card-title"> <%= new Date(f.date_sortie).toLocaleDateString() %> </h5>
           <p class="card-text"><%= `${f.description}`  %> </p>
-          <a href="<%= link %>" class="btn btn-primary">Ajouter à Favorie</a>
+          <a href="<%= link %>" class="btn btn-primary">Ajouter aux Favoris</a>
         </div>
       </div>
        </div>
