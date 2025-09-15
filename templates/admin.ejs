@@ -68,7 +68,7 @@
     <!-- section admin -->
     <% if (user.role=='admin' ) { %>
       <div class="container p-4 w-100 mt-5 border rounded bg-light justify-content-center align-items-center">
-        <h3> Enregister un film</h2>
+        <h3> Enregister un film</h3>
 
         <form class="d-flex gab-3 " action="" method="post">
           <div class="m-3">
@@ -153,6 +153,7 @@
               </tr>
               <% }) %>
           </tbody>
+        </table>
           <div>
           </div>
       </div>
@@ -190,6 +191,7 @@
   </main>
  
 </div>
+
 <%- include('partials/footer', {year: 2025}) %>
 </body>
 
