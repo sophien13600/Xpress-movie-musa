@@ -16,35 +16,9 @@
       <%- include('partials/header') %>
     </header>
     <main class="content">
-      <div class="container p-1 w-100 mt-5 border rounded bg-dark justify-content-center align-items-center">
-        <h2> Bienvenu notre platform de films</h2>
-        <h3>Liste de films</h3>
-        <div class="row m-3">
-          <% films.forEach(f=> { %>
-            <% let link=`admin/favori/${f.id}` %>
-              <div class="col-md-3 mb-4">
-                <div class="card h-100  " style="width: 18rem; ">
-                  <img src="/public/assets/<%= `${f.image}` %> " class="card-img-top" alt="film" height="200px">
-                  <div class="card-body ">
-                    <h5 class="card-title">
-                      <%= `${f.genre}` %>
-                    </h5>
-                    <h5 class="card-title">
-                      <%= `${f.titre}` %>
-                    </h5>
-                    <h5 class="card-title">
-                      <%= new Date(f.date_sortie).toLocaleDateString() %>
-                    </h5>
-                    <p class="card-text">
-                      <%= `${f.description}` %>
-                    </p>
-                    <a href="<%= link %>" class="btn btn-primary">Ajouter à Favorie</a>
-                  </div>
-                </div>
-              </div>
-              <%})%>
-        </div>
-      </div>
+      < <h2> Bienvenu notre platform de films</h2>
+         <%- include('component/films_cards') %>
+     
 
     </main>
 
