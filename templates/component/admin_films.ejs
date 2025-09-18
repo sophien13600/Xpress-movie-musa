@@ -1,28 +1,28 @@
 <div class="container p-4 w-100 mt-5 border rounded bg-dark p-4 text-light justify-content-center align-items-center">
         <h3> Enregister un film</h3>
 
-        <form class="d-flex gab-3 " action="" method="post">
-          <div class="m-3">
+        <form class="d-flex gap-1 row g-3 " action="" method="post">
+          <div class="m-3 col-12 col-sm-6 col-md-3 ">
             <label for="genre" class="form-label">Genre</label>
             <input type="text" class="form-control"  name="genre">
           </div>
-          <div class="m-3 ">
+          <div class="m-3 col-12 col-sm-6 col-md-3 ">
             <label for="titre" class="form-label">Titre</label>
             <input type="text" class="form-control"  name="titre">
           </div>
-          <div class="m-3 ">
+          <div class="m-3 col-12 col-sm-6 col-md-3 ">
             <label for="description" class="form-label">Description </label>
             <input type="text" class="form-control" id="description_id" name="description">
           </div>
-          <div class="m-3">
+          <div class="m-3 col-12 col-sm-6 col-md-3 ">
             <label for="date" class="form-label">Date de Sortie</label>
             <input type="date" class="form-control"  name="date">
           </div>
-          <div class="m-3">
+          <div class="m-3 col-12 col-sm-6 col-md-3 ">
             <label for="image" class="form-label">Image</label>
             <input type="file" class="form-control"  name="image">
           </div>
-          <div class="m-3 mt-5">
+          <div class="m-3 mt-5 col-12 col-sm-6 col-md-3">
             <button type="submit" class="btn btn-primary w-100">Enregistrer</button>
           </div>
         </form>
@@ -31,7 +31,7 @@
       <div class="container p-1 w-100 mt-5 border rounded p-4 bg-dark text-light align-items-center">
 
         <h3>Liste de films</h3>
-
+          <div class="table-responsive"></div>
         <table class='table table-striped table-hover align-middle  '>
           <thead class='table-primary text-light border rounded bg-dark'>
             <tr>
@@ -48,35 +48,35 @@
           <tbody >
             <% adminFilms.forEach(f=> { %>
               <tr>
-                <td class="w-25">
+                <td >
                   <input type="text" class="form-control"  name="genre" value="<%= f.genre %>"
                     form="form-<%= f.id %>">
                 </td>
-                <td class="w-25">
+                <td >
                   <input type="text" class="form-control"  name="titre" value="<%= f.titre %>"
                     form="form-<%= f.id %>">
                 </td>
-                <td class="w-25">
+                <td >
                   <input type="text" class="form-control" name="description"
                     value="<%= f.description %>" form="form-<%= f.id %>">
                 </td>
-                <td class="w-25">
+                <td >
                   <input type="date" class="form-control"  name="date_sortie"
                     value="<%= f.date_sortie ? new Date(f.date_sortie).toISOString().split('T')[0] : '' %>"
                     form="form-<%= f.id %>">
                 </td>
-                <td class="w-25">
+                <td >
                   <input type="hidden" class="form-control"  name="image" value="<%= f.image %>"
                     form="form-<%= f.id %>">
                   <img src="/public/assets/<%= f.image %>" class="card-img-top"
                     style="width: 50px; height: 50px; border-radius: 2px;" alt="...">
                 </td>
-                <td class='text-end w-25'>
+                <td class='text-end '>
                   <form id="form-<%= f.id %>" action="/admin/update/film/<%= f.id %>" method="post">
                     <button type="submit" class="btn btn-success">Modifier</button>
                   </form>
                 </td>
-                <td class='text-end w-25'>
+                <td class='text-end '>
                   <form action="/admin/delete/film/<%= f.id %>" method="get">
                     <button type="submit" class="btn btn-danger">Supprimer</button>
                   </form>
@@ -85,6 +85,7 @@
               <% }) %>
           </tbody>
         </table>
+      </div>
           <div>
           </div>
       </div>

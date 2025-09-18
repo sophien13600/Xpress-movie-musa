@@ -14,8 +14,10 @@
   <div class="wrapper">
   <%-include('partials/header') %>
   <main class="content">
-  <div class="container-sm p-4 w-25 mt-5 border rounded bg-dark text-white justify-content-center align-items-center">
     <form action="/signup" method="post">
+        <div class="container d-flex justify-content-center mt-5">
+            <div class="col-12 col-sm-10 col-md-6 col-lg-4 p-4 border rounded bg-dark text-white">
+            
       <div class="mb-3 ">
         <label for="nom" class="form-label">Nom</label>
         <input type="text" class="form-control" id="nom" name="nom">
@@ -40,8 +42,10 @@
         </select>
       </div>
       <button type="submit" class="btn btn-outline-success w-100">Enregistrer</button>
-    </form>
+    </div>
   </div>
+    </form>
+
   </main>
   </div>
  <footer>
