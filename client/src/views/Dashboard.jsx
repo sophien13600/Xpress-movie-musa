@@ -1,13 +1,16 @@
 import AdminFilms from "../components/AdminFilms";
 import FilmCard from "../components/FilmCard";
+import Profile from  '../components/Profile';
 
 export default function Dashboard() {
-
-    return (
-        <>
-            <h1>Dashboard</h1>
-            <AdminFilms />
-            <FilmCard />
-        </>
+      const storedUser = localStorage.getItem('user');
+        const userInfo = storedUser ? JSON.parse(storedUser) : null;
+     
+return (
+    <>
+        <Profile />
+        {userInfo?.role === 'admin' && <AdminFilms />}
+        <FilmCard />
+    </>
     )
 }

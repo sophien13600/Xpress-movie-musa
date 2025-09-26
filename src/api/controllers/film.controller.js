@@ -4,16 +4,18 @@ import filmRepository from '../../repositories/film.repository.js';
 
 const getAllFilms = async (req, res) => {
     try {
-        const films = await filmRepository.findAllFilm();
- 
-       
-        console.log(req.session.user_id);
-        const adminFilms = await filmRepository.findAdminFilm(17);
+        const films = await filmRepository.findAllFilm();      
+        return res.status(200).json(films);
+    } catch (err) {
+        console.error(err);
+        return res.status(500);
+    }
+};
+const getAdminFilms = async (req, res) => {
+    try {
+        const adminFilms = await filmRepository.findAdminFilm(req.params.id);
            
-        return res.status(200).json({ films, adminFilms }
-
-
-        );
+        return res.status(200).json(adminFilms );
     } catch (err) {
         console.error(err);
         return res.status(500);
@@ -21,4 +23,4 @@ const getAllFilms = async (req, res) => {
 };
 
 
-export default { getAllFilms, };
+export default { getAllFilms, getAdminFilms};

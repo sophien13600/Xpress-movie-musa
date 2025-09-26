@@ -4,28 +4,32 @@ import axios from "../../axios.config.js";
 
 
 export default function Login() {
-    const email = useRef()
-    const password = useRef()
-    const navigate = useNavigate()
+    const email = useRef();
+    const password = useRef();
+    const navigate = useNavigate();
 
-    function connexion(event) {
-        event.preventDefault();  // formun sayfayı yenilemesini engeller
-        axios.post(`/api/login`, {
-            email: email.current?.value?.trim(),
-            password: password.current?.value ?? ""
+    const connexion = async (event) => {
+        event.preventDefault();
+
+        try {
+            const res = await axios.post("/api/login", {
+                email: email.current?.value?.trim(),
+                password: password.current?.value ?? ""
+            });
+
+            const userData = res.data.user;
+
+            // localStorage'a kaydet
+            localStorage.setItem("user", JSON.stringify(userData));
+
+            // Dashboard’a yönlendir
+            navigate("/dashboard");
+        } catch (error) {
+            console.error(error);
+            alert("Email veya şifre hatalı!");
+            navigate('/login')
         }
-        )
-
-        const userData = res.data.user;
-
-        // localStorage'a kaydet
-        localStorage.setItem("user", JSON.stringify(userData));
-        
-        navigate('/dashboard');
-     
-        
-
-    }
+    };
 
 
     return (

@@ -1,6 +1,7 @@
 import favoriRepository from '../repositories/favori.repository.js'
 import filmRepository from '../repositories/film.repository.js';
 
+
 const saveFavoriFilm= async(req, res, next)=>{
   if (!req.session.user){
     const films = await filmRepository.findAllFilm();

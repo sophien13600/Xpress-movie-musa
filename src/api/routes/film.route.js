@@ -5,6 +5,7 @@ import filmController from '../controllers/film.controller.js'
 const router = express.Router()
 
 router.get("/api/films", filmController.getAllFilms);
+router.get("/api/films/:id", filmController.getAdminFilms);
 
 
 // router.post('/admin', filmController.saveFilm);
