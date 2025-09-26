@@ -24,6 +24,7 @@ const saveFilm = async (req, res, next) => {
 
 const showFilms = async (req, res, next) => {
   const films = await filmRepository.findAllFilm();
+
   let adminFilms=[];
   if (req.session.user) {
    adminFilms = await filmRepository.findAdminFilm(req.session.user.id);

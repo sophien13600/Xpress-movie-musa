@@ -4,9 +4,16 @@ import session from 'express-session'
 import userRouter from './src/routes/auth.route.js';
 import filmRouter from './src/routes/film.route.js';
 import favoriRouter from './src/routes/favori.route.js';
+import filmApiRoutes from './src/api/routes/film.route.js'
+import userApiRoutes from './src/api/routes/auth.route.js'
+import favoriApiRoutes from './src/api/routes/favori.route.js'
+
+import cors from "cors";
 
 
 const app = express()
+
+app.use(cors());
 
 // configurer la session
 app.use(session({
@@ -16,6 +23,8 @@ app.use(session({
 
 }))
 
+
+
 app.use((req, res, next) => {
   res.locals.user = req.session.user || null;
   next();
@@ -23,6 +32,7 @@ app.use((req, res, next) => {
 
 // utiliser le middleware body-parser
 app.use(express.urlencoded())
+app.use(express.json())
 
 // configurer les ressources statiques
 app.use(express.static('public'))
@@ -32,6 +42,10 @@ app.use(express.static('public'))
 app.use('/', userRouter);
 app.use('/', filmRouter);
 app.use('/', favoriRouter);
+
+app.use("/", filmApiRoutes);
+app.use("/", userApiRoutes);
+app.use("/", favoriApiRoutes);
 
 // Configuration du moteur de template
 app.set('view engine', 'ejs')

@@ -1,0 +1,13 @@
+body {
+    padding-top: 70px;
+}
+
+h2,
+p,
+a,
+span {
+
+    color: white !important;
+    text-align: center !important;
+
+}
