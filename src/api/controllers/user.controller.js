@@ -2,7 +2,7 @@ import userRepository from '../../repositories/user.repository.js'
 import bcrypt from "bcrypt";
 
 const saveUser = async (req , res)=>{
-    const user = await userRepository.save();
+    const user = await userRepository.save(req.body);
     return res.status(200);
 
 }

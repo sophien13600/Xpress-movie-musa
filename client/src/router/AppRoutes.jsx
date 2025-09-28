@@ -6,6 +6,7 @@ import Favori from "../views/Favori"
 import Signup from "../views/Signup"
 import Login from "../views/Login"
 import Dashboard from "../views/Dashboard"
+import SearchFilms from "../views/SearchFilms"
 
 
 
@@ -18,6 +19,7 @@ const AppRoutes = () => {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/search" element={<SearchFilms />} />
 
         </Routes>
 

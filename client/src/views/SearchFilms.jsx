@@ -1,26 +1,20 @@
-import { useEffect, useState } from "react";
-import axios from "../../axios.config.js";
-
-
-export default function FilmCard() {
-    const [films, setFilms] = useState([]);
+import { useContext, useRef, useState } from "react";
+import { GlobalContext } from "../contexts/GlobalContext";
+export default function SearchFilms() {
+    const { searchFilms } = useContext(GlobalContext);
     const [erreur, setErreur] = useState()
 
-    useEffect(() => {
-        axios.get("/api/films")
-            .then(response => {
-                setFilms(response.data);
-            })
-            .catch(error => { console.error("There was an error!", error); });
-    }, []);
+
 
     return (
-        <div className="container p-1 w-100 mt-5 text-light border rounded bg-dark justify-content-center align-items-center">
+
+        <div style={{ width: "1200px" }}>
+             <div className="container p-1 w-100 mt-5 text-light border rounded bg-dark justify-content-center align-items-center">
             <h3>Liste de films</h3>
 
             <div className="row m-3 ">
-                {!erreur && films &&
-                    films.map((f, ind) =>
+                {!erreur && searchFilms &&
+                    searchFilms.map((f, ind) =>
                         //  let link=`/admin/favori/${f.id}`
                         <div key={f.id} className=" col-12 col-sm-6 col-md-3 mb-4 ">
                             <div className="card h-70 ">
@@ -54,7 +48,8 @@ export default function FilmCard() {
         </div>
 
 
+        </div>
+
+
     )
-
 }
-

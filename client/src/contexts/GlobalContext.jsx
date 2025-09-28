@@ -2,13 +2,12 @@ import { createContext, useState } from "react";
 
 export const GlobalContext = createContext()
 
-const message = 'Hello, world!'
-
 export const Provider = ({ children }) => {
+    const [searchFilms, setSearchFilms]= useState([])
   
 
     return (
-        <GlobalContext.Provider value={{ }}>
+        <GlobalContext.Provider value={{searchFilms,setSearchFilms }}>
             {children}
         </GlobalContext.Provider>
     )

@@ -26,7 +26,7 @@ export default function Login() {
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
-            alert("Email veya şifre hatalı!");
+            alert("Email or password wrong!");
             navigate('/login')
         }
     };

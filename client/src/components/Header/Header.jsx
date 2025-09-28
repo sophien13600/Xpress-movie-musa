@@ -1,16 +1,45 @@
-import { NavLink } from "react-router-dom";
-import { useContext } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import { useContext, useRef } from "react";
 import { GlobalContext } from "../../contexts/GlobalContext";
-
+import axios from "../../../axios.config";
 
 export default function Header() {
     const { isAuthenticated, setIsAuthenticated } = useContext(GlobalContext)
-    function logout() {
-        localStorage.removeItem('username')
-        localStorage.removeItem('password')
-        setIsAuthenticated(false)
+    const { searchFilms, setSearchFilms } = useContext(GlobalContext)
+    const navigate = useNavigate()
+    const storedUser = localStorage.getItem('user');
+    const user = storedUser ? JSON.parse(storedUser) : null;
 
+    const url = user == null ? '/signup' : '/dashboard'
+
+    const search = useRef();
+
+
+
+    function logout() {
+        localStorage.removeItem('user')
+
+        // setIsAuthenticated(false)
+        navigate('/login')
     }
+
+
+async function searchFilm(e) {
+    e.preventDefault();
+    const query = search.current?.value?.trim();
+    if (!query) return;
+    
+    try {
+        const res = await axios.post('/api/films/search', { search: query });
+        setSearchFilms(res.data);
+        console.log(res.data);
+        navigate('/search');
+    } catch (err) {
+        console.error(err);
+    }
+}
+
+
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
@@ -32,26 +61,27 @@ export default function Header() {
                         </li>
                     </ul>
 
-                    <form className="d-flex mx-auto my-2 my-lg-0" role="search" action="/search" method="post">
-                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="search" />
+                    <form className="d-flex mx-auto my-2 my-lg-0" onSubmit={searchFilm}>
+
+                        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" ref={search} />
                         <button className="btn btn-outline-success" type="submit">Search</button>
                     </form>
-
 
                     <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
 
                         <li className="nav-item d-flex align-items-center me-3">
-                            <NavLink to="/signup" className="nav-link">Compte</NavLink>
+                            <NavLink to={url} className="nav-link">Compte</NavLink>
                         </li>
-                        {!isAuthenticated &&
+                        {!user &&
                             <li className="nav-item d-flex align-items-center me-3">
                                 <NavLink to="/login" className="nav-link">Connexion</NavLink>
                             </li>
+
                         }
-                        {isAuthenticated &&
+                        {user &&
                             <li className="nav-item d-flex align-items-center me-3">
-                                <span className="nav-link">user.nom </span>
-                                <a className="nav-link" href="/login">Deconnexion</a>
+                                <span className="nav-link"> {user.nom} </span>
+                                <button className="nav-link btn btn-link" onClick={logout}> Deconnexion </button>
                             </li>
                         }
                     </ul>

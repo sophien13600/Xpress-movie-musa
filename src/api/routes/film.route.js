@@ -2,16 +2,15 @@ import express from 'express'
 import filmController from '../controllers/film.controller.js'
 
 
+
 const router = express.Router()
 
 router.get("/api/films", filmController.getAllFilms);
 router.get("/api/films/:id", filmController.getAdminFilms);
-
-
-// router.post('/admin', filmController.saveFilm);
-
-// router.get('/admin/delete/film/:id', filmController.removeFilm);
+router.post('/api/films', filmController.saveFilm);
+router.delete('/api/films/delete/:id', filmController.removeFilm);
+router.post('/api/films/search', filmController.searchFilm);
 // router.post('/admin/update/film/:id', filmController.updateFilm);
-// router.post(['/search', '/favori/search', '/admin/search', '/login/search', '/signup/search'], filmController.searchFilm);
+
 
 export default router;
