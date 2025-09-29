@@ -10,7 +10,7 @@ router.get("/api/films/:id", filmController.getAdminFilms);
 router.post('/api/films', filmController.saveFilm);
 router.delete('/api/films/delete/:id', filmController.removeFilm);
 router.post('/api/films/search', filmController.searchFilm);
-// router.post('/admin/update/film/:id', filmController.updateFilm);
+router.post('/api/films/update/:id', filmController.updateFilm);
 
 
 export default router;

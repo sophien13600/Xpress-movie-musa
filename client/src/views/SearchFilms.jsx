@@ -1,6 +1,8 @@
 import { useContext, useRef, useState } from "react";
 import { GlobalContext } from "../contexts/GlobalContext";
+
 export default function SearchFilms() {
+    
     const { searchFilms } = useContext(GlobalContext);
     const [erreur, setErreur] = useState()
 

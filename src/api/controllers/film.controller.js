@@ -8,25 +8,35 @@ const getAllFilms = async (req, res) => {
         return res.status(200).json(films);
     } catch (err) {
         console.error(err);
-        return res.status(500);
+        return res.sendStatus(500);
     }
 };
 const getAdminFilms = async (req, res) => {
     try {
         const adminFilms = await filmRepository.findAdminFilm(req.params.id);
-
         return res.status(200).json(adminFilms);
     } catch (err) {
         console.error(err);
-        return res.status(500);
+        return res.sendStatus(500);
     }
 };
+
+
+
+const removeFilm = async (req, res) => {
+    try {
+        await filmRepository.deleteFilmById(req.params.id)
+        return res.sendStatus(200)
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
+}
 
 const saveFilm = async (req, res) => {
     try {
         const film = await filmRepository.save(req.body, req.body.userId)
         return res.status(200).json(film)
-
     }
 
     catch (error) {
@@ -34,16 +44,6 @@ const saveFilm = async (req, res) => {
         return res.sendStatus(500);
     }
 
-}
-
-const removeFilm = async (req, res) => {
-    try {
-        await filmRepository.deleteFilmById(req.params.id)
-        return res.status(200)
-    } catch (error) {
-        console.error(error);
-        return res.sendStatus(500);
-    }
 }
 
 const searchFilm = async (req, res, next) => {
@@ -58,5 +58,9 @@ const searchFilm = async (req, res, next) => {
         return res.sendStatus(500);
     }
 };
+const updateFilm = async (req, res, next) => {
 
-export default { removeFilm, getAllFilms, getAdminFilms, saveFilm, searchFilm };
+    
+}
+
+export default { updateFilm, removeFilm, getAllFilms, getAdminFilms, saveFilm, searchFilm };

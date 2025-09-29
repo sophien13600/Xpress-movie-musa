@@ -9,13 +9,10 @@ export default function Header() {
     const navigate = useNavigate()
     const storedUser = localStorage.getItem('user');
     const user = storedUser ? JSON.parse(storedUser) : null;
-
     const url = user == null ? '/signup' : '/dashboard'
 
     const search = useRef();
-
-
-
+    
     function logout() {
         localStorage.removeItem('user')
 
@@ -32,7 +29,6 @@ async function searchFilm(e) {
     try {
         const res = await axios.post('/api/films/search', { search: query });
         setSearchFilms(res.data);
-        console.log(res.data);
         navigate('/search');
     } catch (err) {
         console.error(err);

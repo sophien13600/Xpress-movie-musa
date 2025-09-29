@@ -1,11 +1,15 @@
 import axios from "axios"
-import { useEffect, useRef } from "react"
-import { useForm } from "react-hook-form"
+import { useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom"
+import { GlobalContext } from "../contexts/GlobalContext.jsx";
+import './AdminFilms.jsx'
 
 export default function SaveFilm() {
     const storedUser = localStorage.getItem('user');
     const user = storedUser ? JSON.parse(storedUser) : null;
+
+    const { adminFilms, setAdminFilms } = useContext(GlobalContext);
+    const { getFilms } = useContext(GlobalContext);
 
     const genre = useRef()
     const titre = useRef()
@@ -15,10 +19,11 @@ export default function SaveFilm() {
 
 
     const navigate = useNavigate();
+
     const saveFilm = async (event) => {
         event.preventDefault();
         try {
-         const res= await  axios.post('http://localhost:3000/api/films', {
+            const res = await axios.post('http://localhost:3000/api/films', {
                 genre: genre.current?.value?.trim(),
                 titre: titre.current?.value?.trim(),
                 description: description.current?.value?.trim(),
@@ -26,17 +31,18 @@ export default function SaveFilm() {
                 image: image.current?.value,
                 userId: user.id
             })
-            const filmData = res.data.film; 
-            localStorage.setItem('film', JSON.stringify(filmData));
-            navigate("/dashboard")
+            setAdminFilms(res.data.film);
+            localStorage.setItem('film', JSON.stringify(adminFilms));
+            getFilms();
+          
         } catch (error) {
             console.error(error);
             alert("The movie could not be recorded !");
             navigate('/dashboard')
         }
-
-
     }
+
+
 
     return (
         <div className="container p-4 w-100 mt-5 border rounded bg-dark p-4 text-light justify-content-center align-items-center">

@@ -1,12 +1,14 @@
 import express from 'express'
-// import favoriController from '../../controllers/favori.controller.js'
+import favoriController from '../controllers/favori.controller.js';
 
 
 const router = express.Router()
 
-// router.get('/admin/favori/:id', favoriController.saveFavoriFilm);
-// router.get('/admin/favori/delete/:id', favoriController.removeFavoriFilm);
-// router.get('/favori', favoriController.showFavoriFilm)
+router.post('/api/favoris', favoriController.addFavorie);
+router.get('/api/favoris/:id', favoriController.showFavoriFilm);
+router.delete('/api/favoris/:id', favoriController.removeFavoriFilm);
+
+
 
 
 export default router;

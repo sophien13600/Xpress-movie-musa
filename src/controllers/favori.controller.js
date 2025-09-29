@@ -20,7 +20,7 @@ const saveFavoriFilm= async(req, res, next)=>{
       res.redirect('/');
     }
   }else{
-    console.log('ce film deja exist aux favoris');
+    console.log(favoriFilm);
     res.redirect('/');
   }
 

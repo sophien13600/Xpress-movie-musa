@@ -1,54 +1,48 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import axios from "../../axios.config.js";
-import SaveFilm from "./SaveFilm.jsx";
+import SaveFilm from './SaveFilm.jsx';
+import { GlobalContext } from "../contexts/GlobalContext.jsx";
+import { use } from "react";
 
 export default function AdminFilms() {
-  const [adminFilms, setAdminFilms] = useState([]);
+
+  const {adminFilms, setAdminFilms} = useContext(GlobalContext);
   const [erreur, setErreur] = useState()
 
+  const storedUser = localStorage.getItem('user');
+  const userInfo = storedUser ? JSON.parse(storedUser) : null;
+  const {getFilms}= useContext(GlobalContext);
+ 
+
   useEffect(() => {
-    const storedUser = localStorage.getItem('user');
-    const userInfo = storedUser ? JSON.parse(storedUser) : null;
-
-
-
-    axios.get(`/api/films/${userInfo.id}`)
-      .then(response => {
-        setAdminFilms(response.data);
-      })
-      .catch(error => {
-        console.error("There was an error!", error);
-      });
+    if (userInfo?.id) getFilms();
 
   }, []);
 
   function modifier(filmId) {
-     return async (event) => {
-        event.preventDefault();
-        try {
-          
-        } catch (error) {
-          
-        }
-      }
-  }
- function suprimer(filmId) {
     return async (event) => {
-        event.preventDefault();
-    
-    try {
-    await axios.delete(`/api/films/delete/${filmId}`)
-      alert('Film deleted')
-        navigate("/dashboard");
+      event.preventDefault();
+      try {
 
+      } catch (error) {
+
+      }
+    }
+  }
+  
+  async function suprimer(filmId) {
+    try {
+      await axios.delete(`/api/films/delete/${filmId}`)
+      getFilms();
+     
     } catch (error) {
       console.error(error);
       alert('Film could not be deleted')
       navigate('/dashboard');
     }
-    
+
   }
- }
+
   return (
     <>
       <SaveFilm />
@@ -96,9 +90,9 @@ export default function AdminFilms() {
                       </form>
                     </td>
                     <td className="text-end">
-                      <form onSubmit={suprimer(f.id)}>
-                        <button type="submit" className="btn btn-danger"> Supprimer  </button>
-                      </form>
+
+                      <button onClick={() => suprimer(f.id)} className="btn btn-danger"> Supprimer  </button>
+
                     </td>
                   </tr>
                 ))

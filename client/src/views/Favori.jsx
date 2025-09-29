@@ -1,6 +1,38 @@
+import axios from "../../axios.config.js";
+import { useEffect, useState } from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+
 export default function Favori() {
-    const erreur = ''
-    const films = []
+    const [erreur, setErreur] = useState()
+    const [films, setFilms] = useState([]);
+    const navigate = useNavigate();
+
+    const storedUser = localStorage.getItem('user');
+    const userInfo = storedUser ? JSON.parse(storedUser) : null;
+
+
+    useEffect(() => {
+        if (!userInfo) {
+            alert('Please log in to show a movie to your favorites.')
+            navigate('/login')
+        } else {
+            axios.get(`/api/favoris/${userInfo.id}`)
+                .then(res => {
+                    setFilms(res.data);
+                })
+                .catch(error => {
+                    console.error("There was an error!", error);
+                });
+        }
+    })
+    async function removeFavori(filmId) {
+        try {
+            await axios.delete(`/api/favoris/${filmId}`)
+        } catch (error) {
+            console.log(error);
+        }
+
+    }
 
     return (
         <div style={{ width: "1200px" }}>
@@ -28,7 +60,7 @@ export default function Favori() {
                                             {f.description}
 
                                         </h5>
-                                        <a href="<%= link %>" className="btn btn-primary">Ajouter à Favorie</a>
+                                        <button onClick={() => removeFavori(f.id)} className="btn btn-primary">Suprimer de Favorie</button>
                                     </div >
                                 </div >
                             </div >
