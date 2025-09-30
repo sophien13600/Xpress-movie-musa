@@ -32,6 +32,15 @@ const removeFilm = async (req, res) => {
         return res.sendStatus(500);
     }
 }
+const removeUserFilms = async (req, res) => {
+    try {
+        await filmRepository.deleteFilmByUserId(req.params.id)
+        return res.sendStatus(200)
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500);
+    }
+}
 
 const saveFilm = async (req, res) => {
     try {
@@ -63,4 +72,6 @@ const updateFilm = async (req, res, next) => {
     
 }
 
-export default { updateFilm, removeFilm, getAllFilms, getAdminFilms, saveFilm, searchFilm };
+
+
+export default { removeUserFilms, updateFilm, removeFilm, getAllFilms, getAdminFilms, saveFilm, searchFilm };

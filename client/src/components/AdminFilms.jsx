@@ -6,14 +6,10 @@ import { use } from "react";
 
 export default function AdminFilms() {
 
-  const {adminFilms, setAdminFilms} = useContext(GlobalContext);
+  const { getFilms, adminFilms, setAdminFilms, userInfo, setUserInfo } = useContext(GlobalContext);
   const [erreur, setErreur] = useState()
 
-  const storedUser = localStorage.getItem('user');
-  const userInfo = storedUser ? JSON.parse(storedUser) : null;
-  const {getFilms}= useContext(GlobalContext);
- 
-
+  
   useEffect(() => {
     if (userInfo?.id) getFilms();
 

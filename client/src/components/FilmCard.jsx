@@ -1,23 +1,14 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useContext, useState } from "react";
 import axios from "../../axios.config.js";
 import { useNavigate } from "react-router-dom"
+import { GlobalContext } from "../contexts/GlobalContext";
 
 
 export default function FilmCard() {
-    const [films, setFilms] = useState([]);
+   
+    const { films, setFilms, userInfo, setUserInfo }= useContext(GlobalContext)
     const [erreur, setErreur] = useState()
-    const navigate = useNavigate();
-
-    const storedUser = localStorage.getItem('user');
-    const userInfo = storedUser ? JSON.parse(storedUser) : null;
-
-    useEffect(() => {
-        axios.get("/api/films")
-            .then(response => {
-                setFilms(response.data);
-            })
-            .catch(error => { console.error("There was an error!", error); });
-    }, []);
+    const navigate = useNavigate();   
 
     async function addFavori(filmId) {   
         if (!userInfo) {
@@ -28,7 +19,6 @@ export default function FilmCard() {
                 userId: userInfo.id,
                 filmId: filmId
             })
-            const favoriFilm = res.data.favoriFilm;
        
         }
 
@@ -58,7 +48,6 @@ export default function FilmCard() {
                                     </h5>
                                     <h5 className="card-text fs-5 fs-md-4 fs-lg-3">
                                         {f.description}
-
                                     </h5>
                                     <button onClick={()=>addFavori(f.id)} className="btn btn-primary">Ajouter à Favorie</button>
                                 </div >

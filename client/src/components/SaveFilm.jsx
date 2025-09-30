@@ -8,8 +8,8 @@ export default function SaveFilm() {
     const storedUser = localStorage.getItem('user');
     const user = storedUser ? JSON.parse(storedUser) : null;
 
-    const { adminFilms, setAdminFilms } = useContext(GlobalContext);
-    const { getFilms } = useContext(GlobalContext);
+    const { getFilms, adminFilms, setAdminFilms, userInfo, setUserInfo } = useContext(GlobalContext);
+    
 
     const genre = useRef()
     const titre = useRef()
@@ -29,8 +29,9 @@ export default function SaveFilm() {
                 description: description.current?.value?.trim(),
                 date: date.current?.value,
                 image: image.current?.value,
-                userId: user.id
+                userId: userInfo.id
             })
+      
             setAdminFilms(res.data.film);
             localStorage.setItem('film', JSON.stringify(adminFilms));
             getFilms();

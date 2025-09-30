@@ -5,17 +5,21 @@ import axios from "../../../axios.config";
 
 export default function Header() {
     const { isAuthenticated, setIsAuthenticated } = useContext(GlobalContext)
-    const { searchFilms, setSearchFilms } = useContext(GlobalContext)
+
+    const { userInfo, setUserInfo,searchFilms, setSearchFilms } = useContext(GlobalContext)
+    console.log(userInfo);
+    
+    
     const navigate = useNavigate()
-    const storedUser = localStorage.getItem('user');
-    const user = storedUser ? JSON.parse(storedUser) : null;
-    const url = user == null ? '/signup' : '/dashboard'
+ 
+    
+    const url = userInfo == null ? '/signup' : '/dashboard'
 
     const search = useRef();
     
     function logout() {
         localStorage.removeItem('user')
-
+        setUserInfo(null);
         // setIsAuthenticated(false)
         navigate('/login')
     }
@@ -68,15 +72,15 @@ async function searchFilm(e) {
                         <li className="nav-item d-flex align-items-center me-3">
                             <NavLink to={url} className="nav-link">Compte</NavLink>
                         </li>
-                        {!user &&
+                        {!userInfo &&
                             <li className="nav-item d-flex align-items-center me-3">
                                 <NavLink to="/login" className="nav-link">Connexion</NavLink>
                             </li>
 
                         }
-                        {user &&
+                        {userInfo &&
                             <li className="nav-item d-flex align-items-center me-3">
-                                <span className="nav-link"> {user.nom} </span>
+                                <span className="nav-link"> {userInfo.nom} </span>
                                 <button className="nav-link btn btn-link" onClick={logout}> Deconnexion </button>
                             </li>
                         }

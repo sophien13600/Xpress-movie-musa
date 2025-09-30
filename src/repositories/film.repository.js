@@ -45,6 +45,16 @@ const deleteFilmById = async (id) => {
         return null;
     }
 }
+const deleteFilmByUserId = async (id) => {
+    try {
+        const DELETE = "Delete from films where user_id=?"
+        await connection.query(DELETE, id);
+        return true;
+    } catch (error) {
+        console.log(error);
+        return null;
+    }
+}
 
 const updateFilmById = async(film, id)=> {
     try {
@@ -71,4 +81,4 @@ const searchFilms = async(text)=>{
 }
 
 
-export default { save, findAllFilm, deleteFilmById, findAdminFilm, updateFilmById, searchFilms };
+export default { deleteFilmByUserId, save, findAllFilm, deleteFilmById, findAdminFilm, updateFilmById, searchFilms };

@@ -1,14 +1,16 @@
 import axios from "../../axios.config.js";
-import { useEffect, useState } from "react"
-import { useLocation, useNavigate } from "react-router-dom"
+import { useEffect, useState, useContext } from "react"
+import {  useNavigate } from "react-router-dom"
+import { GlobalContext } from "../contexts/GlobalContext.jsx";
 
 export default function Favori() {
     const [erreur, setErreur] = useState()
     const [films, setFilms] = useState([]);
     const navigate = useNavigate();
+    const { userInfo, setUserInfo } = useContext(GlobalContext
+    )
 
-    const storedUser = localStorage.getItem('user');
-    const userInfo = storedUser ? JSON.parse(storedUser) : null;
+  
 
 
     useEffect(() => {

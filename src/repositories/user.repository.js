@@ -42,6 +42,8 @@ const updateUser = async (user,id) => {
      try {
         const UPDATE = "UPDATE users set nom=?, prenom= ?, email= ?,  role= ?  where id =?"
         const resultat = await connection.query(UPDATE, [user.nom, user.prenom, user.email,  user.role, id]); 
+      
+        
         return resultat ;
     } catch (error) {
         console.log(error);

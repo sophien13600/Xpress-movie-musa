@@ -1,16 +1,17 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form";
+import axios from "../../axios.config";
 
 export default function Signup() {
     const { register, handleSubmit, reset } = useForm();
     const navigate = useNavigate();
 
-    async function connexion(formData) {
+    async function connexion(formData) {  
         try {
             await axios.post("/api/signup", formData);
-            reset();
             navigate("/login");
+            reset();
         } catch (err) {
             console.error(err);
         }
@@ -21,7 +22,7 @@ export default function Signup() {
 
         <div className="wrapper">
             <main className="content mt-5">
-                <form onSubmit={connexion}>
+                <form onSubmit={handleSubmit(connexion)}>
                     <div className="container d-flex justify-content-center mt-5">
                         <div className=" p-4 border rounded bg-dark text-white">
 

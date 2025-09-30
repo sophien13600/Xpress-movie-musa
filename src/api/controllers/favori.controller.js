@@ -9,11 +9,11 @@ const addFavorie=async(req, res, next)=>{
             return res.status(200).json(favoriFilm);
         }
         else{
-            return res.message('Ce film déjâ exist au favories')
+            return res.sendStatus(400);
         }
     } catch (error) {
         console.error(error);
-        return res.status(500);
+        return res.sendStatus(500);
         
     }
   
@@ -25,7 +25,7 @@ const showFavoriFilm = async (req, res, next) => {
         
     } catch (error) {
         console.error(error);
-        return res.status(500);
+        return res.sendStatus(500);
     }
 
 }

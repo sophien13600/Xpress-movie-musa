@@ -11,6 +11,7 @@ router.post('/api/films', filmController.saveFilm);
 router.delete('/api/films/delete/:id', filmController.removeFilm);
 router.post('/api/films/search', filmController.searchFilm);
 router.post('/api/films/update/:id', filmController.updateFilm);
+router.delete('/api/delete_films/:id', filmController.removeUserFilms)
 
 
 export default router;

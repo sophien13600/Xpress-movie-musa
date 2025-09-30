@@ -1,28 +1,25 @@
-import { useRef } from "react"
+import { useRef, useContext } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "../../axios.config.js";
+import { GlobalContext } from "../contexts/GlobalContext";
 
 
 export default function Login() {
+        const { userInfo, setUserInfo } = useContext(GlobalContext)
     const email = useRef();
     const password = useRef();
     const navigate = useNavigate();
 
     const connexion = async (event) => {
         event.preventDefault();
-
         try {
             const res = await axios.post("/api/login", {
                 email: email.current?.value?.trim(),
                 password: password.current?.value ?? ""
             });
-
             const userData = res.data.user;
-
-            // localStorage'a kaydet
-            localStorage.setItem("user", JSON.stringify(userData));
-
-            // Dashboard’a yönlendir
+            setUserInfo(userData)
+            // localStorage.setItem("user", JSON.stringify(userData));  // localStorage'a kaydet
             navigate("/dashboard");
         } catch (error) {
             console.error(error);
@@ -30,8 +27,6 @@ export default function Login() {
             navigate('/login')
         }
     };
-
-
     return (
         <>
             <div className="wrapper">

@@ -26,7 +26,8 @@ CREATE TABLE films (
 );
 
 SELECT * FROM films;
-SELECT * FROM films WHERE user_id=1;
+SELECT * FROM films WHERE user_id=29;
+DELETE  FROM films WHERE user_id=29;
 
 CREATE Table favoris (
     id INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
