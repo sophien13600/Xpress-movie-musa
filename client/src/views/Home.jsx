@@ -11,6 +11,9 @@ export default function Home() {
 
                 </header>
                 <main className="content">
+
+
+                    test
                     <h2> Bienvenu notre platform de films</h2>
                     <FilmCard />
                 </main>
