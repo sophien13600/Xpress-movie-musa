@@ -1,5 +1,6 @@
 import connection from '../config/db.config.js'
 import bcrypt from "bcrypt";
+import pool from '../config/db.js';
 
 const save = async (user) => {
     const saltRounds = 10;

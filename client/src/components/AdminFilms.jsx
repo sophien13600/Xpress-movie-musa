@@ -106,34 +106,3 @@ export default function AdminFilms() {
 
 
 <h3>Liste de films Admin</h3>
-
-// <div classNameName="row m-3 ">
-//     {!erreur && adminFilms &&
-//         adminFilms.map((f, ind) =>
-//             //  let link=`/admin/favori/${f.id}`
-//             <div classNameName=" col-12 col-sm-6 col-md-3 mb-4 ">
-//                 <div classNameName="card h-70 ">
-//                     <img src={new URL(`../assets/${f.image}`, import.meta.url).href} classNameName="card-img-top" alt="film" height="200px" />
-//                     <div classNameName="card-body">
-//                         <h5 classNameName="card-title fs-5 fs-md-4 fs-lg-3">
-//                             {f.genre}
-//                         </h5>
-//                         <h5 classNameName="card-title  fs-5 fs-md-4 fs-lg-3">
-//                             {f.titre}
-//                         </h5>
-//                         <h5 classNameName="card-title card-title fs-5 fs-md-4 fs-lg-3">
-//                             {f.date_sortie}
-//                         </h5>
-//                         <h5 classNameName="card-text fs-5 fs-md-4 fs-lg-3">
-//                             {f.description}
-//                         </h5>
-//                         <a href="<%= link %>" classNameName="btn btn-primary">Ajouter à Favorie</a>
-//                     </div >
-//                 </div >
-//             </div >
-//         )
-//     }
-
-
-
-// </div >
