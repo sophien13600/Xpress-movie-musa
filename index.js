@@ -13,8 +13,13 @@ import cors from "cors";
 
 const app = express()
 
-app.use(cors());
-
+// app.use
+// (cors());
+app.use(cors({
+    origin: 'https://papaya-gaufre-36ab9d.netlify.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    credentials: true
+}));
 // configurer la session
 app.use(session({
     secret: 'express-ejs',
