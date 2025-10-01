@@ -1,4 +1,4 @@
-import filmRepository from "../repositories/film.repository.js";
+import filmRepository from "../api/repositories/film.repository.js";
 
 const getAllFilms = async (req, res) => {
   try {

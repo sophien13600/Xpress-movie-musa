@@ -1,5 +1,4 @@
-import favoriRepository from "../repositories/favori.repository.js";
-
+import favoriRepository from "../api/repositories/favori.repository.js";
 
 const addFavorie = async (req, res, next) => {
   try {

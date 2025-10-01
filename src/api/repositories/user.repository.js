@@ -1,6 +1,16 @@
 // import connection from '../config/db.config.js'
 import bcrypt from "bcrypt";
 import connection from "../../config/db.config.js";
+import { supabase } from "../../lib/supabaseClient.js";
+
+async function addUser() {
+  const { data, error } = await supabase
+    .from("users")
+    .insert([{ nom: "Wick", prenom: "John", email: "john@gmail.com" }]);
+
+  if (error) console.error(error);
+  else console.log("Utilisateur ajouté:", data);
+}
 
 const save = async (user) => {
   const saltRounds = 10;
@@ -74,4 +84,11 @@ const updatePassword = async (id, pass) => {
   }
 };
 
-export default { save, getUser, deleteUser, updateUser, updatePassword };
+export default {
+  addUser,
+  save,
+  getUser,
+  deleteUser,
+  updateUser,
+  updatePassword,
+};
