@@ -2,7 +2,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 // .env dosyasının tam yolu
-dotenv.config({ path: path.resolve('C:/Users/yalci/Desktop/Xpress-movie/env') });
+dotenv.config({ path: path.resolve('C:/wamp64/www/Xpress-movie-musa/env') });
 
 import mysql from 'mysql2/promise';
 

@@ -1,4 +1,6 @@
--- Active: 1750235362805@@127.0.0.1@3306@xpress_movie
+-- Active: 1759322575563@@127.0.0.1@3306@xpress_movie
+DROP DATABASE if EXISTS xpress_movie;
+
 CREATE DATABASE xpress_movie;
 use xpress_movie;
 

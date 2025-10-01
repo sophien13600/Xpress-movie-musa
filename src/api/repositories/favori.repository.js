@@ -1,4 +1,4 @@
-import connection from '../config/db.config.js';
+import connection from '../../config/db.config.js';
 const addFavorie = async( film_id,user_id)=>{
     try {
         const INSERT = "INSERT into favoris VALUES (null, ?,?,? );"

@@ -1,4 +1,4 @@
-import connection from '../config/db.config.js';
+import connection from '../../config/db.config.js';
 
 const save = async (film, user_id) => {
     try {
