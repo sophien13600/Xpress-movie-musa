@@ -40,6 +40,7 @@ export default function Favori() {
         <div style={{ width: "1200px" }}>
             <div className="container p-1 w-100 mt-5 text-light border rounded bg-dark justify-content-center align-items-center" >
                 <h3>Liste de films</h3>
+                <h2>TEST</h2>
                 <div className="row m-3 ">
                     {!erreur && films &&
                         films.map((f, ind) =>
